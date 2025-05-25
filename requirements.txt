@@ -1,0 +1,7 @@
+# For load testing script
+requests
+numpy==1.26.4
+torchvision
+torch
+h5py
+pytest

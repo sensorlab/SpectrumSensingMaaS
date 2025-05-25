@@ -1,0 +1,10 @@
+# For the API endpoint
+fastapi[all] == 0.114.1
+uvicorn==0.30.6
+python-multipart
+numpy==1.26.4
+gdown
+
+# For the model
+torch==2.4.1
+torchvision
