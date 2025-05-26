@@ -15,7 +15,7 @@ data_t = [[[[float(data_t[0,i,j]) for j in range(data_t.shape[1])] for i in rang
 
 import time
 
-def test_nvg_endpoint():
+def test_specctrum_sensing_endpoint():
     # Wait for the container to be ready
     time.sleep(10)
     response = requests.post("http://localhost:8000/ResNet18", json=data_t)

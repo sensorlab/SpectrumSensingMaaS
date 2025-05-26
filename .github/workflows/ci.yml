@@ -1,4 +1,4 @@
-name: Test FastAPI NVG Endpoint
+name: Test FastAPI SpectrumSensign Endpoint
 
 on:
   push:
@@ -23,10 +23,10 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Build Docker image
-      run: docker build -t sl-nvg ./nvg-endpoint
+      run: docker build -t spec-sens ./spectrumsensing-endpoint
 
     - name: Run container
-      run: docker run -d -p 8000:8000 --name sl-nvg sl-nvg
+      run: docker run -d -p 8000:8000 --name spec-sens spec-sens
 
     - name: Wait for API to be Ready
       run: |
@@ -44,5 +44,5 @@ jobs:
 
     - name: Cleanup
       run: |
-        docker stop sl-nvg
-        docker rm sl-nvg
+        docker stop spec-sens
+        docker rm spec-sens
