@@ -18,5 +18,5 @@ import time
 def test_specctrum_sensing_endpoint():
     # Wait for the container to be ready
     time.sleep(10)
-    response = requests.post("http://localhost:8000/ResNet18", json=data_t)
+    response = requests.post("http://localhost:8000/SpectrumSensing_ResNet18", json=data_t)
     assert response.status_code == 200

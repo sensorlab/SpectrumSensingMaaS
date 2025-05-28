@@ -3,6 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import List, Tuple
 from tests.datasets import SignalDatasetV2
 
+REMOTE_URL = ''
 DATASET_PATH = "dataset_path.h5"
 IMG_SIZE=128
 IMG_STRIDE=128
@@ -53,7 +54,7 @@ data_t = [
 model_names = ['ResNet18']
 model_name = model_names[0]
 
-url = f"http://193.2.205.27:31228/{model_name}"
+url = f"{REMOTE_URL}/{model_name}"
 parallel_requests = 1000
 # warmup
 

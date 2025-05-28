@@ -17,7 +17,7 @@ model.eval()
 
 app = FastAPI()
 
-@app.post("/ResNet18")
+@app.post("/SpectrumSensing_ResNet18")
 async def echo(data: List[List[List[List[float]]]]):
     preds = []
     for i in range(len(data)):

@@ -28,13 +28,13 @@ To build and run the Docker container locally navigate to model/docker directory
 
 ```bash
 # Build the Docker image
-docker build -t api-tester-nvg .
+docker build -t api-tester-spec-sens .
 
 # Run the container
-docker run -p 8000:8000 api-tester-nvg
+docker run -p 8000:8000 api-tester-spec-sens
 ```
 
-The API will be available at `http://localhost:8000/NVG`
+The API will be available at `http://localhost:8000/SpectrumSensing_ResNet18`
 Endpoint route can be changed in `api-endpoint.py` file.
 
 ## Adapting for Your Own Model
