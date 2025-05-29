@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spec-sens-api # adjust the name
+spec:
+  replicas: 3 # adjust the number of replicast
+  selector:
+    matchLabels:
+      app: spec-sens-api # adjust the name
+  template:
+    metadata:
+      labels:
+        app: spec-sens-api # this should match the selector above and service selector below
+    spec:
+      containers:
+      - name: spec-sens
+        image: <docker_registry>/api-tester-spec-sens:latest # change the image name and docker registry
+        # imagePullPolicy: Never # Add this if pulling from local docker registry
+        ports:
+        - containerPort: 8000 # Port configured inside dockerfile
+      # nodeSelector:
+      #   kubernetes.io/arch: arm64 # this selects only arm edge devices (RaspberryPi5)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tester-service
+spec:
+  type: NodePort # Nodeport service 
+  ports:
+  - port: 8088
+    targetPort: 8000
+    nodePort: 30070 # Exposed port on the k8s cluster
+  selector:
+    app: spec-sens-api

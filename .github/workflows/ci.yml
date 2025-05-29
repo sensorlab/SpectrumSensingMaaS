@@ -1,0 +1,48 @@
+name: Test FastAPI SpectrumSensing Endpoint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-spectrumsensing-api:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install test tools
+      run: pip install -r requirements_for_test.txt
+
+    - name: Build Docker image
+      run: docker build -t spec-sens ./spectrumsensing-endpoint
+
+    - name: Run container
+      run: docker run -d -p 8000:8000 --name spec-sens spec-sens
+
+    - name: Wait for API to be Ready
+      run: |
+        for i in {1..20}; do
+          if curl -s http://localhost:8000/docs; then
+            echo "API is up!"
+            break
+          fi
+          echo "Waiting for API..."
+          sleep 30
+        done
+
+    - name: Run API test
+      run: pytest tests/
+
+    - name: Cleanup
+      run: |
+        docker stop spec-sens
+        docker rm spec-sens
