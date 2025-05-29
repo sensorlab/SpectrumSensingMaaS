@@ -113,3 +113,7 @@ This setup enables scalable deployment of your model API endpoint with built-in 
 
 ## License
 GNU General Public License v3.0 see [LICENSE](LICENSE) file for details.
+
+## Acknowledgment
+
+This work was supported by funding from the European Union's Horizon Europe Framework Programme [NANCY](https://nancy-project.eu/) project under Grant Agreement No. 101096456.
